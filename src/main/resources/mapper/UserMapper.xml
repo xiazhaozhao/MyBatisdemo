@@ -3,11 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--用户表-->
-<mapper namespace="UserNs">
+<mapper namespace="com.zijiewa.mapper.UserMapper">
+    <resultMap id="userResultMap" type="com.zijiewa.po.User">
+        <id column="id_" property="id"></id>
+        <result column="username_" property="username"></result>
+    </resultMap>
     <!--配置SQL语句-->
     <!--通过ID查询用户记录-->
     <select id="findUserById" parameterType="int" resultType="com.zijiewa.po.User">
       SELECT * FROM USER WHERE id=#{id}
+    </select>
+
+    <select id="findUserResultMapById" parameterType="int" resultMap="userResultMap">
+      SELECT id id_,username username_ FROM USER WHERE id=#{id}
     </select>
 
     <!--resultType：指定单条记录映射的java类型-->

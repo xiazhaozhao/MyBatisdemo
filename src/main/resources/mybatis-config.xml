@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!-- 根标签 -->
 <configuration>
+    <properties resource="db.properties"></properties>
     <!-- 环境，可以配置多个，default：指定采用哪个环境 -->
     <environments default="test">
         <!-- id：唯一标识 -->
@@ -12,10 +13,10 @@
             <transactionManager type="JDBC" />
             <!-- 数据源，池类型的数据源 -->
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/shop" />
-                <property name="username" value="root" />
-                <property name="password" value="root" />
+                <property name="driver" value="${jdbc.driver}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.username}" />
+                <property name="password" value="${jdbc.password}" />
             </dataSource>
         </environment>
     </environments>
@@ -23,5 +24,6 @@
     <!--加载映射文件-->
     <mappers>
         <mapper resource="sqlmap/User.xml"></mapper>
+        <mapper resource="mapper/UserMapper.xml"></mapper>
     </mappers>
 </configuration>
